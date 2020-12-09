@@ -8,7 +8,8 @@ import site
 import calculator
 import envelope
 import translator
-from currency_converter import CurrencyConverter
+import time
+import webbrowser
 
 opts = {"alias": ('jarvis', 'jarv', 'джарвис', 'джарв', 'джерв', 'джервис'),
         "tbr": ('скажи', 'расскажи', 'покажи', 'сколько', 'произнеси', 'как','сколько','поставь','переведи', "засеки",'запусти','сколько будет'),
@@ -17,7 +18,7 @@ opts = {"alias": ('jarvis', 'jarv', 'джарвис', 'джарв', 'джерв'
              'startStopwatch': ('запусти секундомер', "включи секундомер", "засеки время"),
              'stopStopwatch': ('останови секундомер', "выключи секундомер", "останови"),
              "stupid1": ('расскажи анекдот', 'рассмеши меня', 'ты знаешь анекдоты', "шутка", "прикол"),
-             "calc": ('прибавить','умножить','разделить','степень','вычесть','поделить','х','+','-','/'),
+             "calc": ('калькулятор','прибавить','умножить','разделить','степень','вычесть','поделить','х','+','-','/'),
              "shutdown": ('выключи', 'выключить', 'отключение', 'отключи', 'выключи компьютер'),
              "conv": ("валюта", "конвертер","доллар",'руб','евро'),
              "internet": ("открой", "вк", "гугл", "сайт", 'вконтакте', "ютуб"),
@@ -28,7 +29,7 @@ opts = {"alias": ('jarvis', 'jarv', 'джарвис', 'джарв', 'джерв'
 startTime = 0
 speak_engine = pyttsx3.init()
 voices = speak_engine.getProperty('voices')
-speak_engine.setProperty('voice', voices[2].id)
+speak_engine.setProperty('voice', voices[4].id)
 r = sr.Recognizer()
 m = sr.Microphone(device_index=1)
 voice = "str"
@@ -41,7 +42,7 @@ def speak(what):
 
 def callback(recognizer, audio):
     try:
-        global voice
+        
         voice = recognizer.recognize_google(audio, language="ru-RU").lower()
 
         print("[log] Распознано: " + voice)
@@ -88,15 +89,11 @@ def execute_cmd(cmd):
         os.system('shutdown -s')
         speak("Выключаю...")
     elif cmd == 'calc':
-        calculator.calculator()
-    elif cmd == 'conv':
-        convert.convertation()
+        os.startfile("C:\\Users\\g.chistopolskij\\Desktop\\Калькултор")
     elif cmd == 'translator':
         translator.translate()
-    elif cmd == 'stupid1':
-        anekdot.fun()
     elif cmd == 'internet':
-        browser.browser()
+        webbrowser._browsers
     elif cmd == 'startStopwatch':
         speak("Секундомер запущен")
         startTime = time.time()

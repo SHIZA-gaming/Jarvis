@@ -2,7 +2,7 @@ import requests
 import functions
 
 def translate():
-    url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?'
+    url = 'https://translate.google.com/?hl=ru'
     key = 'trnsl.1.1.20190227T075339Z.1b02a9ab6d4a47cc.f37d50831b51374ee600fd6aa0259419fd7ecd97'
     text = functions.voice.split()[1:]
     lang = 'en-ru'
