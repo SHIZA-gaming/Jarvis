@@ -5,6 +5,7 @@ import os
 import webbrowser
 import datetime
 import pyautogui as pag
+from babel.dates import format_datetime
 def speak(what):
     print( what )
     speak_engine.say( what )
@@ -18,7 +19,7 @@ letters = {
 'q':'й','w':'ц','e':'у','r':'к','t':'е','y':'н','u':'г','i':'ш','o':'щ','p':'з','[':'х',']':'ъ','a':'ф','s':'ы','d':'в','f':'а','g':'п','h':'р','j':'о','k':'л','l':'д',';':'ж',"'":'э','z':'я','x':'ч','c':'с','v':'м','b':'и','n':'т','m':'ь',',':'б','.':'ю',' ':' '
 }
 commands = {
-    "vasya": ('вася','васечка','васюня','василий','василиса'),
+    "jarvis": ('jarvis', 'jarv', 'джарвис', 'джарв', 'джерв', 'джервис'),
     "tbr": ('скажи','расскажи','покажи','сколько','произнеси'),
     "calc": ('сколько будет','посчитай'),
     "open": ('открой','запусти','включи'),
@@ -33,23 +34,25 @@ def callback(recognizer, audio):
         voice = recognizer.recognize_google(audio, language = "ru-RU").lower()
         print("[log] Распознано: " + voice)
 
-        if voice.startswith(commands["vasya"]):
+        if voice.startswith(commands["jarvis"]):
             cmd = voice
-            for x in commands['vasya']:
+            for x in commands['jarvis']:
                 cmd = cmd.replace(x, "").strip()
+            if cmd == 'troll' or cmd == 'взломай пентагон':
+                    os.startfile("C:\\Users\\g.chistopolskij\\github\\Jarvis\\Jarvis\\Troll.bat") 
 
             if cmd.startswith(commands["open"]):
                 for x in commands['open']:
                     cmd = cmd.replace(x, "").strip()
                 if cmd == 'калькулятор':
-                    os.startfile("C:\\Users\\gusev\\OneDrive\\Рабочий стол\\Калькулятор")
+                    os.startfile("calc.exe")
                 if cmd == 'вконтакте' or cmd == 'вк':
                     webbrowser.open('https://vk.com/feed')
                 if cmd == 'ютубчик' or cmd == 'youtube':
                     webbrowser.open('https://www.youtube.com')
                 if cmd == 'этот проект на гитхабе':
                     webbrowser.open('https://github.com/gusev-iliya/Vasya_voice-assistant')
-                sites = open("sites.txt", "r")
+                sites = open("sites.txt", "r")#C:/Users/g.chistopolskij/github/Jarvis/Jarvis/
                 for line in sites:
                     cm, link = line.split(' ')
                     if cmd==cm:
@@ -114,11 +117,12 @@ def callback(recognizer, audio):
                     result=int(a)-int(b)
                     print('ответ: ',str(result) )
             if cmd.startswith(commands["ctime"]):
-                print('Сейчас ', datetime.datetime.today().strftime('%H:%M'))
+                speak('Сейчас %s'%datetime.datetime.today().strftime('%H:%M'))
             if cmd == 'какое сегодня число' or cmd == 'какой сегодня день':
-                for key in monthes:
-                    if key==datetime.datetime.today().strftime('%m'):
-                        print('Сегодня ', datetime.datetime.today().strftime('%d'), monthes[key])
+                fdt = format_datetime(datetime.datetime.today(), locale='ru_RU')
+                #for key in monthes:
+                    #if key==datetime.datetime.today().strftime('%m'):
+                speak('Сегодня %s'%(fdt[:fdt.index(',')]))
             if cmd.startswith(commands["cursor"]):
                 for x in commands['cursor']:
                     cmd = cmd.replace(x, "").strip()
@@ -192,7 +196,7 @@ voices = speak_engine.getProperty('voices')
 speak_engine.setProperty('voice', voices[0].id)
 
 speak("Добрый день, повелитель")
-speak("Вася слушает")
+speak("Jarvis слушает")
 
 stop_listening = r.listen_in_background(m, callback)
 while True:time.sleep(0.001)

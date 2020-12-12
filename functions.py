@@ -29,10 +29,12 @@ opts = {"alias": ('jarvis', 'jarv', 'джарвис', 'джарв', 'джерв'
 startTime = 0
 speak_engine = pyttsx3.init()
 voices = speak_engine.getProperty('voices')
-speak_engine.setProperty('voice', voices[4].id)
+speak_engine.setProperty('voice', voices[2].id)
 r = sr.Recognizer()
 m = sr.Microphone(device_index=1)
 voice = "str"
+
+
 
 
 def speak(what):
