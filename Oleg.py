@@ -218,28 +218,41 @@ while True:time.sleep(0.001)
 
 
 
+# text = ''
+# j = 0
 
-# раздел создания интерфейса
+# def main():
+#     speak text, talk, cmd_exe, j
+#     try:
+#         talk()
+#         if text != '':
+#             cmd_exe()
+#             j = 0
+#     except(UnboundLocalError):
+#         pass
+#     except(TypeError):
+#         pass
+# # раздел создания интерфейса
 
-root = Tk()
-root.geometry('250x350')
-root.configure(bg='gray22')
-root.title('Sara')
-root.resizable(False, False)
+# root = Tk()
+# root.geometry('250x350')
+# root.configure(bg='gray22')
+# root.title('Sara')
+# root.resizable(False, False)
 
-lb = Label(root, text=text)
-lb.configure(bg='gray')
-lb.place(x=25, y=25, height=25, width=200)
+# lb = Label(root, text=text)
+# lb.configure(bg='gray')
+# lb.place(x=25, y=25, height=25, width=200)
 
-but1 = Button(root, text='Слушать', command=main)
-but1.configure(bd=1, font=('Castellar', 25), bg='gray')
-but1.place(x=50, y=160, height=50, width=150)
+# but1 = Button(root, text='Слушать', command=main)
+# but1.configure(bd=1, font=('Castellar', 25), bg='gray')
+# but1.place(x=50, y=160, height=50, width=150)
 
-but2 = Button(root, text='Выход', command=quit)
-but2.configure(bd=1, font=('Castellar', 25), bg='gray')
-but2.place(x=50, y=220, height=50, width=150)
+# but2 = Button(root, text='Выход', command=quit)
+# but2.configure(bd=1, font=('Castellar', 25), bg='gray')
+# but2.place(x=50, y=220, height=50, width=150)
 
-root.mainloop()
+# root.mainloop()
 
-while True:
-    main()
+# while True:
+#     main()
